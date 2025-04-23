@@ -50,6 +50,5 @@ class SplashScene extends Phaser.Scene {
       this.scene.switch("titleScene")
     }
   }
-  
+
   export default TitleScene
-  
