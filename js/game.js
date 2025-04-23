@@ -5,6 +5,14 @@
 // Created on: Apr 2025
 // This file contains the JS functions for index.html
 
+// scene import statements
+import SplashScene from "./splashScene.js"
+import TitleScene from "./titleScene.js"
+
+// create the new scenes
+const splashScene = new SplashScene()
+const titleScene = new TitleSceneScene()
+
 const config = {
   type: Phaser.AUTO,
   width: 1920,
