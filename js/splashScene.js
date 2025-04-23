@@ -1,3 +1,5 @@
+/* global Phaser */
+
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Benjamin Abebe
@@ -44,6 +46,9 @@ class SplashScene extends Phaser.Scene {
    * @param {number} time - The current time.
    * @param {number} delta - The delta time in ms since the last frame. 
    */
+  update(time, delta) {
+    this.scene.switch("titleScene")
+  }
 }
 
 export default SplashScene
