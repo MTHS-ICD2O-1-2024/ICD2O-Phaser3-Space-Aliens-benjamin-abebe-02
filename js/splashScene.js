@@ -68,7 +68,3 @@ update(time, delta) {
     }
   }
 } 
-  update(time, delta) {
-    this.scene.switch("titleScene")
-  }
-export default SplashScene
