@@ -1,19 +1,21 @@
 /* global Phaser */
-
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Benjamin Abebe
 // Created on: Apr 2025
 // This file contains the JS functions for index.html
 
-import SplashScene from './splashScene.js'
-import TitleScene from './titleScene.js'
+// scene import statements
+import SplashScene from "./splashScene.js"
+import TitleScene from "./titleScene.js"
 
-// Our game scene
+
+// create the new scenes
 const splashScene = new SplashScene()
 const titleScene = new TitleScene()
 
-//* Game scene */
+
+
 const config = {
   type: Phaser.AUTO,
   width: 1920,
@@ -36,6 +38,7 @@ const game = new Phaser.Game(config)
 
 // load scenes
 game.scene.add('splashscene', splashScene)
+game.scene.add('titlescene', titleScene)
 
 // start title
 game.scene.start('splashscene')

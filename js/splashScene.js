@@ -1,3 +1,5 @@
+/* global Phaser */
+
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Benjamin Abebe
@@ -16,14 +18,15 @@ class SplashScene extends Phaser.Scene {
   super({ key: "splashScene"})
 
   this.splashSceneBackgroundImage = null
+    super({ key: "splashScene" })
   }
 
-/** 
- * Can be defined on your own Scenes. 
- * Use it to create your game objects. 
- *  @param {Object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start(). 
- */
-  init (data){
+  /** 
+   * Can be defined on your own Scenes. 
+   * Use it to create your game objects. 
+   *  @param {Object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start(). 
+   */
+  init(data) {
     this.cameras.main.setBackgroundColor("#ffffff")
   }
 
@@ -58,10 +61,14 @@ class SplashScene extends Phaser.Scene {
    * @param {number} time - The current time.
    * @param {number} delta - The delta time in ms since the last frame. 
    */
+
 update(time, delta) {
   if (time > 3000) {
     this.scene.switch("titleScene")
     }
   }
 } 
+  update(time, delta) {
+    this.scene.switch("titleScene")
+  }
 export default SplashScene
