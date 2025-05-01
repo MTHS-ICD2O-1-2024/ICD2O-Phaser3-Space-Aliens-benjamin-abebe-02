@@ -7,9 +7,11 @@
 // This file contains the JS functions for index.html
 
 import SplashScene from './splashScene.js'
+import TitleScene from './titleScene.js'
 
 // Our game scene
 const splashScene = new SplashScene()
+const titleScene = new TitleScene()
 
 //* Game scene */
 const config = {
