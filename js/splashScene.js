@@ -5,8 +5,6 @@
 // This file contains the JS functions for index.html
 
 
-
-
 /**
 * This method is the constructor
 */
@@ -38,7 +36,7 @@ init (data){
   */
 preload() {
   console.log("Splash Scene")
-  this.preload.image("splashSceneBackground", "./assets/splashSceneImage.png")
+  this.load.image("splashSceneBackground", "./assets/splashSceneImage.png")
 }
 
 
