@@ -1,8 +1,8 @@
 /* global Phaser */
 
-// Created by: Bain Liao
+// Created by: Benjamin Abebe
 // Created on: Apr 2025
-// This is the Title Scene
+// This is the Phaser3 game configuration file
 
 /**
  * This class is the Title Scene.
