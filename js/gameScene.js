@@ -16,14 +16,10 @@ class GameScene extends Phaser.Scene {
 
     this.background = null
     this.ship = null
+    this.fireMissile = false
   }
 
-  /**
-   * Can be defined on your own Scenes.
-   * This method is called by the Scene Manager when the scene starts,
-   *  before preload () and create ().
-   * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().
-   */
+  
   init (data) {
     this.cameras.main.setBackgroundColor('#ffffff')
   }
@@ -35,9 +31,12 @@ class GameScene extends Phaser.Scene {
   preload () {
     console.log('Game Scene')
 
+    // images
     this.load.image('starBackground', './assets/starBackground.png')
     this.load.image('ship', './assets/spaceShip.png')
     this.load.image('missile', './assets/missile.png')
+    // sound
+    this.load.audio('laser', 'assets/laser1.wav')
   }
 
   /**
@@ -86,12 +85,20 @@ class GameScene extends Phaser.Scene {
         this.fireMissile = true
         const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, 'missile')
         this.missileGroup.add(aNewMissile)
+        this.sound.play('laser')
       }
     }
 
     if (keySpaceObj.isUp == true) {
       this.fireMissile = false
     }
+
+    this.missileGroup.children.each(function (item) {
+      item.y = item.y - 15
+      if (item.y < 0) {
+        item.destroy()
+      }
+    })
   }
 }
 
