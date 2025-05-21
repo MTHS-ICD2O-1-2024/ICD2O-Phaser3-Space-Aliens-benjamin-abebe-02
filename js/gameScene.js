@@ -5,17 +5,20 @@
 // This is the Game Scene
 
 class GameScene extends Phaser.Scene {
-  // create an alien
-  createAlien() {
-    const alienXLocation = Math.floor(Math.random() * 1920) + 1;
-    let alienXVelocity = Math.floor(Math.random() * 50) + 1;
-    alienXVelocity *= Math.round(Math.random()) ? 1 : -1;
-    const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien");
-    anAlien.body.velocity.y = 200;
-    anAlien.body.velocity.x = alienXVelocity;
-    this.alienGroup.add(anAlien);
+  // create alien
+  createAlien () {
+    const alienXLocation = Math.floor(Math.random() * 1920) + 1
+    let alienXVelocity = Math.floor(Math.random() * 50) + 1
+    alienXVelocity *= Math.round(Math.random()) ? 1 : -1
+    const anAlien = this.physics.add.sprite(alienXLocation, -100, 'alien')
+    anAlien.body.velocity.y = 200
+    anAlien.body.velocity.x = alienXVelocity
+    this.alienGroup.add(anAlien)
   }
 
+  /**
+   * This method is the constructor.
+   */
   constructor () {
     super({ key: 'gameScene' })
 
@@ -24,7 +27,6 @@ class GameScene extends Phaser.Scene {
     this.fireMissile = false
   }
 
-  
   init (data) {
     this.cameras.main.setBackgroundColor('#ffffff')
   }
@@ -38,7 +40,8 @@ class GameScene extends Phaser.Scene {
     this.load.image('missile', './assets/missile.png')
     this.load.image('alien', './assets/alien.png')
     // sound
-    this.load.audio('laser', 'assets/laser1.wav')
+    this.load.audio('laser', './assets/laser1.wav')
+    this.load.audio('explosion', './assets/barrelExploding.wav')
   }
 
   create (data) {
@@ -50,17 +53,23 @@ class GameScene extends Phaser.Scene {
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
 
+    // create a group for the aliens
     this.alienGroup = this.add.group()
     this.createAlien()
+
+    // Collisions between missiles and aliens
+    this.physics.add.collider(this.missileGroup, this.alienGroup, function (missileCollide, alienCollide) {
+      alienCollide.destroy()
+      missileCollide.destroy()
+      this.sound.play('explosion')
+      this.createAlien()
+      this.createAlien()
+    }.bind(this))
   }
 
-  /**
-   * Should be overridden by your own Scenes.
-   * This method is called once per game step while the scene is running.
-   * @param {number} time The current time.
-   * @param {number} delta The delta time in ms since the last frame.
-   */
   update (time, delta) {
+    // called 60 times a second
+
     const keyLeftObj = this.input.keyboard.addKey('LEFT')
     const keyRightObj = this.input.keyboard.addKey('RIGHT')
     const keySpaceObj = this.input.keyboard.addKey('SPACE')
@@ -80,7 +89,7 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keySpaceObj.isDown === true) {
-      if (this.fireMissile == false) {
+      if (this.fireMissile === false) {
         // fire missile
         this.fireMissile = true
         const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, 'missile')
@@ -89,7 +98,7 @@ class GameScene extends Phaser.Scene {
       }
     }
 
-    if (keySpaceObj.isUp == true) {
+    if (keySpaceObj.isUp === true) {
       this.fireMissile = false
     }
 
