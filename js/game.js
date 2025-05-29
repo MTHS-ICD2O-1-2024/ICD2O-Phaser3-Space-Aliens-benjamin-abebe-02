@@ -4,17 +4,17 @@
 // Created on: Apr 2025
 // This is the Phaser3 game configuration file
 
-// scene import statements
-import SplashScene from './splashScene.js'
-import TitleScene from './titleScene.js'
-import MenuScene from './menuScene.js'
-import GameScene from './gameScene.js'
+// Scene import statements
+import SplashScene from './splashScene.js';
+import TitleScene from './titleScene.js';
+import MenuScene from './menuScene.js';
+import GameScene from './gameScene.js';
 
-// create the new scenes
-const splashScene = new SplashScene()
-const titleScene = new TitleScene()
-const menuScene = new MenuScene()
-const gameScene = new GameScene()
+// Create the new scenes
+const splashScene = new SplashScene();
+const titleScene = new TitleScene();
+const menuScene = new MenuScene();
+const gameScene = new GameScene();
 
 /**
  * Start Phaser Game.
@@ -26,27 +26,26 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true
-    }
+      debug: false,
+    },
   },
-  // set background color
+  // Set background color
   backgroundColor: 0x5f6e7a,
   scale: {
     mode: Phaser.Scale.FIT,
-    // we place it in the middle of the page.
-    autoCenter: Phaser.Scale.CENTER_BOTH
-  }
-}
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
+};
 
-const game = new Phaser.Game(config)
-console.log(game)
+const game = new Phaser.Game(config);
+console.log(game);
 
-// load scenes
+// Load scenes
 // Note: remember any "key" is global and CAN NOT be reused!
-game.scene.add('splashScene', splashScene)
-game.scene.add('titleScene', titleScene)
-game.scene.add('menuScene', menuScene)
-game.scene.add('gameScene', gameScene)
+game.scene.add('splashScene', splashScene);
+game.scene.add('titleScene', titleScene);
+game.scene.add('menuScene', menuScene);
+game.scene.add('gameScene', gameScene);
 
-// the start scene
-game.scene.start('splashScene')
+// Start the first scene
+game.scene.start('splashScene');
